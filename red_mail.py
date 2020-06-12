@@ -7,7 +7,8 @@ from email.mime.text import MIMEText
 
 root = Tk()
 root.iconbitmap("icon.ico")
-root.title('Sistema de envio de correos Redsalud')
+root.title('SEAC Prov v0.2')
+
 
 sender_email = 'cmn.kkckdbb@gmail.com'
 
@@ -16,9 +17,10 @@ def check_password():
         context = ssl.create_default_context()
         with smtplib.SMTP_SSL('smtp.gmail.com', 465, context=context) as server:
             server.login(sender_email, password_input.get())
-        mb.showinfo(title='Loggeado correctamente', message='Contraseña correcta')
+
+        mb.showinfo(title='SEAC Prov v0.2', message='Loggeado correctamente')
     except:
-        mb.askretrycancel(title='Contraseña incorrecta', message='Reingrese la contraseña')
+        mb.showerror(title='SEAC Prov v0.2', message='Contraseña incorrecta. Reingrese')
 
 
 frame_2 = LabelFrame(root, text="Correo Redsalud", padx=49, pady=10)
@@ -87,37 +89,41 @@ Checkbutton(frame_1, text='Profesional asignado',
             variable=is_checked, onvalue=1, offvalue=0, command=activate_prof).grid(row=4, column=1, sticky=W)
 
 def env_mail():
-    if is_checked.get():
-        f = open('mail_prof_text.txt', 'r')
-        mail_prof_text = f.read().format(prof_input.get(), examen_input.get(), fecha_input.get(), hora_input.get())
-        f2 = open('mail_prof_html.txt', 'r')
-        mail_prof_html = f2.read().format(prof_input.get(), examen_input.get(), fecha_input.get(), hora_input.get())
-        chosen_text = mail_prof_text
-        chosen_html = mail_prof_html
-        f.close()
-        f2.close()
-    else:
-        f = open('mail_no_prof_text.txt', 'r')
-        mail_no_prof_text = f.read().format(examen_input.get(), fecha_input.get(), hora_input.get())
-        f2 = open('mail_no_prof_html.txt', 'r')
-        mail_no_prof_html = f2.read().format(examen_input.get(), fecha_input.get(), hora_input.get())
-        chosen_text = mail_no_prof_text
-        chosen_html = mail_no_prof_html
-        f.close()
-        f2.close()
+    try:
+        if is_checked.get():
+            f = open('mail_prof_text.txt', 'r')
+            mail_prof_text = f.read().format(prof_input.get(), examen_input.get(), fecha_input.get(), hora_input.get())
+            f2 = open('mail_prof_html.txt', 'r')
+            mail_prof_html = f2.read().format(prof_input.get(), examen_input.get(), fecha_input.get(), hora_input.get())
+            chosen_text = mail_prof_text
+            chosen_html = mail_prof_html
+            f.close()
+            f2.close()
+        else:
+            f = open('mail_no_prof_text.txt', 'r')
+            mail_no_prof_text = f.read().format(examen_input.get(), fecha_input.get(), hora_input.get())
+            f2 = open('mail_no_prof_html.txt', 'r')
+            mail_no_prof_html = f2.read().format(examen_input.get(), fecha_input.get(), hora_input.get())
+            chosen_text = mail_no_prof_text
+            chosen_html = mail_no_prof_html
+            f.close()
+            f2.close()
 
-    mail_mime_text = MIMEText(chosen_text, "plain")
-    mail_mime_html = MIMEText(chosen_html, "html")
+        mail_mime_text = MIMEText(chosen_text, "plain")
+        mail_mime_html = MIMEText(chosen_html, "html")
 
-    message.attach(mail_mime_text)
-    message.attach(mail_mime_html)
+        message.attach(mail_mime_text)
+        message.attach(mail_mime_html)
 
-    context = ssl.create_default_context()
-    with smtplib.SMTP_SSL('smtp.gmail.com', 465, context=context) as server:
-        server.login(sender_email, password_input.get())
-        server.sendmail(
-            sender_email, email_input.get(), message.as_string()
-        )
+        context = ssl.create_default_context()
+        with smtplib.SMTP_SSL('smtp.gmail.com', 465, context=context) as server:
+            server.login(sender_email, password_input.get())
+            server.sendmail(
+                sender_email, email_input.get(), message.as_string()
+            )
+        mb.showinfo(title="SEAC Prov v0.2", message="Correo enviado correctamente")
+    except:
+        mb.showerror(title='SEAC Prov v0.2', message='Contraseña incorrecta. Reingrese')
 
 def clear_fields(): # borra los campos
     prof_input.delete(0, END)
