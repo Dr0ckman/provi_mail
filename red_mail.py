@@ -5,19 +5,21 @@ import ssl
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
+
 root = Tk()
 root.iconbitmap("icon.ico")
 root.title('SEAC Prov v0.2')
-
+root.resizable(0,0)
 
 sender_email = 'cmn.kkckdbb@gmail.com'
+
+
 
 def check_password():
     try:
         context = ssl.create_default_context()
         with smtplib.SMTP_SSL('smtp.gmail.com', 465, context=context) as server:
             server.login(sender_email, password_input.get())
-
         mb.showinfo(title='SEAC Prov v0.2', message='Loggeado correctamente')
     except:
         mb.showerror(title='SEAC Prov v0.2', message='Contraseña incorrecta. Reingrese')
@@ -28,9 +30,6 @@ frame_2.pack()
 
 frame_1 = LabelFrame(root, text="Datos paciente", padx=10, pady=10)
 frame_1.pack(padx=5, pady=5)
-
-frame_3 = LabelFrame(root)
-frame_3.pack()
 
 password_label = Label(frame_2, text='Contraseña: ')
 password_input = Entry(frame_2, show='*')
