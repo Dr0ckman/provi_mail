@@ -21,8 +21,8 @@ def check_password():
         mb.askretrycancel(title='Contraseña incorrecta', message='Reingrese la contraseña')
 
 
-frame_2 = LabelFrame(root, text="Correo Redsalud", padx=40, pady=10)
-frame_2.pack(padx=5, pady=5)
+frame_2 = LabelFrame(root, text="Correo Redsalud", padx=49, pady=10)
+frame_2.pack()
 
 frame_1 = LabelFrame(root, text="Datos paciente", padx=10, pady=10)
 frame_1.pack(padx=5, pady=5)
@@ -40,7 +40,7 @@ blank_label = Label(frame_1, text="")
 blank_label.grid(row=8)
 blank_label_2 = Label(frame_2, text="")
 blank_label_2.grid(row=1)
-b1 = Button(frame_2, text='Verificar contraseña', command=check_password)
+b1 = Button(frame_2, text='Verificar contraseña', width="26", command=check_password)
 b1.grid(row=2, column=0, columnspan=2)
 
 email_label = Label(frame_1, text='E-mail: ')
@@ -131,10 +131,10 @@ def clear_fields(): # borra los campos
     examen_input.delete(0, END)
     examen_input.insert(0, "")
 
-enviar_correo = Button(frame_1, text='Enviar correo', command=env_mail)
+enviar_correo = Button(frame_1, text='Enviar correo', width="18", command=env_mail)
 enviar_correo.grid(row=9, column=0)
 
-clear = Button(frame_1, text='Borrar datos', command=clear_fields)
+clear = Button(frame_1, text='Borrar datos', width="18", command=clear_fields)
 clear.grid(row=9, column=1)
 
 
