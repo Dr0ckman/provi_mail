@@ -1,0 +1,10 @@
+Estimado Paciente,
+
+
+Le recordamos su hora agendada para el examen {0}, el dia {1} a las {2}, en Clinica Redsalud Providencia.
+
+
+Recuerde presentarse con 15 minutos de anticipacion. En caso de no poder asistir, le solicitamos por favor anule su hora en www.redsalud.cl o nos contacte al 600 718 6000 y asi la dejamos disponible, ya que otro paciente la puede necesitar.
+
+
+Gracias por preferir RedSalud

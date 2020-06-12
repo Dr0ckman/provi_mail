@@ -1,0 +1,14 @@
+Estimado Paciente,
+
+
+Le recordamos su hora con {0}, para el examen {1}, el dia {2} a las {3}, \
+en Clinica Redsalud Providencia.
+
+
+Recuerde presentarse con 15 minutos de anticipacion. \
+En caso de no poder asistir, le solicitamos por favor anule su hora en \
+www.redsalud.cl o nos contacte al 600 718 6000 y asi la dejamos disponible, \
+ya que otro paciente la puede necesitar.
+
+
+Gracias por preferir RedSalud

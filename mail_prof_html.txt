@@ -1,0 +1,19 @@
+<html>
+<body>
+<p>
+Estimado Paciente,
+<br><br>
+Le recordamos su hora con {0}, para el examen {1}, el dia {2} a las {3}, en Clinica Redsalud Providencia.
+<br><br>
+Recuerde presentarse con 15 minutos de anticipacion. En caso de no poder asistir,
+le solicitamos por favor anule su hora
+en <a href="www.redsalud.cl">www.redsalud.cl</a> o nos contacte al 600 718 6000
+y asi la dejamos disponible, ya que otro paciente la puede necesitar.
+<br><br>
+Gracias por preferir RedSalud
+</p>
+<p>
+<img src="https://i.ibb.co/8jPB1w6/firma.png" alt="firma" border="0">
+</p>
+</body>
+</html>
