@@ -9,6 +9,7 @@ root = Tk()
 root.iconbitmap("icon.ico")
 root.title('SEAC Prov v0.2')
 
+
 sender_email = 'cmn.kkckdbb@gmail.com'
 
 def check_password():
@@ -16,6 +17,7 @@ def check_password():
         context = ssl.create_default_context()
         with smtplib.SMTP_SSL('smtp.gmail.com', 465, context=context) as server:
             server.login(sender_email, password_input.get())
+
         mb.showinfo(title='SEAC Prov v0.2', message='Loggeado correctamente')
     except:
         mb.showerror(title='SEAC Prov v0.2', message='Contraseña incorrecta. Reingrese')
