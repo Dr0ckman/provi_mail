@@ -21,21 +21,32 @@ def check_password():
         mb.askretrycancel(title='Contraseña incorrecta', message='Reingrese la contraseña')
 
 
-password_label = Label(root, text='Contraseña: ')
-password_input = Entry(root, show='*')
+frame_2 = LabelFrame(root, text="Correo Redsalud", padx=40, pady=10)
+frame_2.pack(padx=5, pady=5)
+
+frame_1 = LabelFrame(root, text="Datos paciente", padx=10, pady=10)
+frame_1.pack(padx=5, pady=5)
+
+frame_3 = LabelFrame(root)
+frame_3.pack()
+
+password_label = Label(frame_2, text='Contraseña: ')
+password_input = Entry(frame_2, show='*')
 password_label.grid(row=0, column=0)
 password_input.grid(row=0, column=1)
 password = password_input.get()
 
-blank_label = Label(root, text="")
-blank_label.grid(row=1)
-b1 = Button(root, text='Verificar contraseña', command=check_password)
-b1.grid(row=1, column=1)
+blank_label = Label(frame_1, text="")
+blank_label.grid(row=8)
+blank_label_2 = Label(frame_2, text="")
+blank_label_2.grid(row=1)
+b1 = Button(frame_2, text='Verificar contraseña', command=check_password)
+b1.grid(row=2, column=0, columnspan=2)
 
-email_label = Label(root, text='E-mail: ')
-email_input = Entry(root)
-email_label.grid(row=2, column=0)
-email_input.grid(row=2, column=1)
+email_label = Label(frame_1, text='E-mail: ')
+email_input = Entry(frame_1)
+email_label.grid(row=1, column=0)
+email_input.grid(row=1, column=1)
 receiver_email = email_input.get()
 
 message = MIMEMultipart('alternative')
@@ -43,23 +54,23 @@ message["To"] = receiver_email
 message["Subject"] = 'Comprobante cita, Clinica Redsalud Providencia'
 message["From"] = sender_email
 
-prof_label = Label(root, text='Nombre profesional: ', state='disabled')
-prof_input = Entry(root, state='disabled')
+prof_label = Label(frame_1, text='Nombre profesional: ', state='disabled')
+prof_input = Entry(frame_1, state='disabled')
 prof_label.grid(row=3, column=0)
 prof_input.grid(row=3, column=1)
 
-fecha_label = Label(root, text='Fecha examen: ')
-fecha_input = Entry(root)
+fecha_label = Label(frame_1, text='Fecha examen: ')
+fecha_input = Entry(frame_1)
 fecha_label.grid(row=5, column=0)
 fecha_input.grid(row=5, column=1)
 
-hora_label = Label(root, text='Hora examen: ')
-hora_input = Entry(root)
+hora_label = Label(frame_1, text='Hora examen: ')
+hora_input = Entry(frame_1)
 hora_label.grid(row=6, column=0)
 hora_input.grid(row=6, column=1)
 
-examen_label = Label(root, text='Examen: ')
-examen_input = Entry(root)
+examen_label = Label(frame_1, text='Examen: ')
+examen_input = Entry(frame_1)
 examen_label.grid(row=7, column=0)
 examen_input.grid(row=7, column=1)
 
@@ -72,7 +83,7 @@ def activate_prof():
         prof_input.configure(state='disabled')
 
 is_checked = IntVar()
-Checkbutton(root, text='Profesional asignado',
+Checkbutton(frame_1, text='Profesional asignado',
             variable=is_checked, onvalue=1, offvalue=0, command=activate_prof).grid(row=4, column=1, sticky=W)
 
 def env_mail():
@@ -120,11 +131,11 @@ def clear_fields(): # borra los campos
     examen_input.delete(0, END)
     examen_input.insert(0, "")
 
-enviar_correo = Button(root, text='Enviar correo', command=env_mail)
-enviar_correo.grid(row=8, column=0)
+enviar_correo = Button(frame_1, text='Enviar correo', command=env_mail)
+enviar_correo.grid(row=9, column=0)
 
-clear = Button(root, text='Borrar datos', command=clear_fields)
-clear.grid(row=8, column=1)
+clear = Button(frame_1, text='Borrar datos', command=clear_fields)
+clear.grid(row=9, column=1)
 
 
 root.mainloop()
