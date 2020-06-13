@@ -8,22 +8,22 @@ from email.mime.text import MIMEText
 
 root = Tk()
 root.iconbitmap("icon.ico")
-root.title('SEAC Prov v0.2')
+root.title('SEAC Prov v1.0')
 root.resizable(0,0)
 
-sender_email = 'cmn.kkckdbb@gmail.com'
-
-
+sender_email_txt = open('sender_mail.txt', "r")
+sender_email = str(sender_email_txt.read())
+sender_email.strip()
 
 def check_password():
     try:
         context = ssl.create_default_context()
         with smtplib.SMTP_SSL('smtp.gmail.com', 465, context=context) as server:
             server.login(sender_email, password_input.get())
+    except smtplib.SMTPAuthenticationError:
+        mb.showerror(title="SEAC Prov 1.0", message="Contraseña incorrecta. Reingrese")
+    else:
         mb.showinfo(title='SEAC Prov v0.2', message='Loggeado correctamente')
-    except:
-        mb.showerror(title='SEAC Prov v0.2', message='Contraseña incorrecta. Reingrese')
-
 
 frame_2 = LabelFrame(root, text="Correo Redsalud", padx=49, pady=10)
 frame_2.pack()
@@ -120,9 +120,12 @@ def env_mail():
             server.sendmail(
                 sender_email, email_input.get(), message.as_string()
             )
-        mb.showinfo(title="SEAC Prov v0.2", message="Correo enviado correctamente")
+    except smtplib.SMTPAuthenticationError: # maneja errores de autenticacion mostrando un popup
+        mb.showerror(title="SEAC Prov 1.0", message="Contraseña incorrecta. Reingrese")
     except:
-        mb.showerror(title='SEAC Prov v0.2', message='Contraseña incorrecta. Reingrese')
+        mb.showerror(title="SEAC Prov 1.0", message="Error al enviar comprobante. Revisar E-mail paciente") # cualquier error que no sea de autenticacion
+    else:
+        mb.showinfo(title="SEAC Prov v1.0", message="Correo enviado correctamente") # se envia cuando el bloque try se ejecuta correctamente
 
 def clear_fields(): # borra los campos
     prof_input.delete(0, END)
